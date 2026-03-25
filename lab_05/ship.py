@@ -10,7 +10,7 @@ ROTSPEED = 3.5
 # Maksymalna prędkość statku w pikselach na sekundę, zapobiegająca nieskończonemu przyspieszaniu.
 MAXSPEED = 400.0 
 
-DEBUG = True # Flaga do wyświetlania diagnostyki 
+DEBUG = False # Flaga do wyświetlania diagnostyki 
 
 class Ship:
     def __init__(self, x, y):
