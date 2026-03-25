@@ -13,9 +13,9 @@ Główne elementy implementacji obejmują:
 ## Sterowanie 
 Instrukcja sterowania
 Po uruchomieniu symulacji możesz kontrolować statek za pomocą następujących klawiszy:
-* ** Strzałka w Górę: Uruchomienie silnika głównego (przyspieszenie w kierunku dziobu).
-* ** Strzałka w Lewo / Prawo: Obrót statku wokół własnej osi.
-* ** Klawisz Z: Hamulec awaryjny (szybkie wytracanie prędkości).
+* **Strzałka w Górę: Uruchomienie silnika głównego (przyspieszenie w kierunku dziobu).
+* **Strzałka w Lewo / Prawo: Obrót statku wokół własnej osi.
+* **Klawisz Z: Hamulec awaryjny (szybkie wytracanie prędkości).
 
 ## Uruchomienie
 Projekt wymaga zainstalowanego środowiska Python 3 oraz biblioteki `pyray` (Pythonowe wiązania dla Raylib).
