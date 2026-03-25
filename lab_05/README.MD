@@ -23,7 +23,8 @@ Projekt wymaga zainstalowanego środowiska Python 3 oraz biblioteki `pyray` (Pyt
 Program składa się z dwóch modułów, ale punktem wejścia do symulacji jest plik główny. Aby uruchomić aplikację, wykonaj polecenie:
    ```bash
    python main.py
-   
+#============================================
+
 1. Upewnij się, że masz zainstalowaną wymaganą bibliotekę. Możesz to zrobić poleceniem:
    ```bash
    pip install raylib
