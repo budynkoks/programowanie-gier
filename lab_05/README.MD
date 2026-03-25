@@ -10,9 +10,20 @@ Główne elementy implementacji obejmują:
 * **Kolizje z oknem:** Odbijanie statku od krawędzi ekranu o wymiarach 800x600 pikseli poprzez odwracanie odpowiednich składowych wektora prędkości.
 * **Tryb Debug:** Opcjonalne wyświetlanie wektora prędkości (czerwona linia) oraz aktualnej wartości prędkości.
 
+## Sterowanie 
+Instrukcja sterowania
+Po uruchomieniu symulacji możesz kontrolować statek za pomocą następujących klawiszy:
+* ** Strzałka w Górę: Uruchomienie silnika głównego (przyspieszenie w kierunku dziobu).
+* ** Strzałka w Lewo / Prawo: Obrót statku wokół własnej osi.
+* ** Klawisz Z: Hamulec awaryjny (szybkie wytracanie prędkości).
+
 ## Uruchomienie
 Projekt wymaga zainstalowanego środowiska Python 3 oraz biblioteki `pyray` (Pythonowe wiązania dla Raylib).
 
+Program składa się z dwóch modułów, ale punktem wejścia do symulacji jest plik główny. Aby uruchomić aplikację, wykonaj polecenie:
+   ```bash
+   python main.py
+   
 1. Upewnij się, że masz zainstalowaną wymaganą bibliotekę. Możesz to zrobić poleceniem:
    ```bash
    pip install raylib

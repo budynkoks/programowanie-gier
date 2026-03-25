@@ -18,7 +18,7 @@ class Ship:
         self.vel = [0.0, 0.0]   
         self.angle = 0.0        
         
-        # Wierzchołki statku w układzie lokalnym (nos na (0, -15))
+        # Wierzchołki statku w układzie lokalnym (nos n     a (0, -15))
         self.verts = [(0, -15), (-10, 10), (10, 10)]
         # Wierzchołki płomienia silnika
         self.flame_verts = [(0, 20), (-5, 10), (5, 10)]
