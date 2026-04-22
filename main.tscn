@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cxobpuh730wxd"]
+
+[ext_resource type="Script" uid="uid://dlphqvhsc7jvl" path="res://path_follow_3d.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://btboigkw1mv4r" path="res://mesh_instance_3d.gd" id="2_0xm2m"]
+
+[sub_resource type="Curve3D" id="Curve3D_7dm0k"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -15, 0, 0, 0, 0, 0, 0, 0, 0, -30, 0, 0, 0, 0, 0, 0, 0, 0, -50),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
+
+[sub_resource type="Sky" id="Sky_0xm2m"]
+sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
+
+[sub_resource type="Environment" id="Environment_ig7tw"]
+background_mode = 2
+sky = SubResource("Sky_0xm2m")
+
+[node name="main" type="Node3D" unique_id=2143100988]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=458636252]
+transform = Transform3D(1, 0, 0, 0, 0.062111147, 0.9980692, 0, -0.9980692, 0.062111147, -0.014564276, 5.6055255, 0.7153547)
+
+[node name="Path3D" type="Path3D" parent="." unique_id=159035172]
+curve = SubResource("Curve3D_7dm0k")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=2079962946]
+transform = Transform3D(0.99999934, 0, 0, 0, 1, 0, 0, 0, 0.99999934, 0, 0, -8.640384)
+progress = 8.640314
+script = ExtResource("1_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D" unique_id=1950689378]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.3449114e-07, 0.56513226, 4.9699993)
+mesh = SubResource("BoxMesh_7dm0k")
+script = ExtResource("2_0xm2m")
+
+[node name="Camera3D" type="Camera3D" parent="Path3D/PathFollow3D" unique_id=481161834]
+transform = Transform3D(-1.0000006, -5.1866046e-08, 7.037517e-08, 0, 0.8049977, 0.59327805, -8.7422826e-08, 0.5932784, -0.80499816, -0.010358616, 1.8957093, 3.2216125)
+environment = SubResource("Environment_ig7tw")
