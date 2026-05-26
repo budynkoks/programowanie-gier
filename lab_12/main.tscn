@@ -1,0 +1,181 @@
+[gd_scene format=3 uid="uid://cxobpuh730wxd"]
+
+[ext_resource type="Script" uid="uid://dlphqvhsc7jvl" path="res://path_follow_3d.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://d2cggr01khnar" path="res://main.gd" id="1_lquwl"]
+[ext_resource type="Script" uid="uid://btboigkw1mv4r" path="res://mesh_instance_3d.gd" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dklai3x5dtks0" path="res://bullet.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dr7d7ixlncwy6" path="res://target.tscn" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://chj54c6xicrod" path="res://camera_3d.gd" id="5_kek77"]
+[ext_resource type="PackedScene" uid="uid://7gq01m2n4evq" path="res://enemy.tscn" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://c21mclek7rqhu" path="res://node.gd" id="7_272bh"]
+[ext_resource type="Script" uid="uid://cinetc4otuaqj" path="res://static_body_3d.gd" id="8_5vw27"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_272bh"]
+sky_top_color = Color(0.22200224, 1.21289495e-05, 0.9145887, 1)
+sky_horizon_color = Color(0.41989, 0.6369578, 0.90969765, 1)
+
+[sub_resource type="Sky" id="Sky_272bh"]
+sky_material = SubResource("ProceduralSkyMaterial_272bh")
+
+[sub_resource type="Environment" id="Environment_5vw27"]
+background_mode = 2
+sky = SubResource("Sky_272bh")
+ambient_light_source = 3
+ambient_light_color = Color(0, 0, 0.4392157, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_7dm0k"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -15, 0, 0, 0, 0, 0, 0, 0, 0, -30, 0, 0, 0, 0, 0, 0, 0, 0, -50),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+
+[sub_resource type="Animation" id="Animation_4c57u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kek77"]
+resource_name = "barrel_roll"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 3.1415927)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4c57u"]
+_data = {
+&"RESET": SubResource("Animation_4c57u"),
+&"barrel_roll": SubResource("Animation_kek77")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
+
+[sub_resource type="Sky" id="Sky_0xm2m"]
+sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
+
+[sub_resource type="Environment" id="Environment_ig7tw"]
+background_mode = 2
+sky = SubResource("Sky_0xm2m")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kek77"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4c57u"]
+resource_local_to_scene = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kek77"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4c57u"]
+
+[node name="main" type="Node3D" unique_id=2143100988]
+script = ExtResource("1_lquwl")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1392353731]
+environment = SubResource("Environment_5vw27")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=458636252]
+transform = Transform3D(1, 0, 0, 0, 0.062111147, 0.9980692, 0, -0.9980692, 0.062111147, -0.014564276, 5.6055255, 0.7153547)
+
+[node name="Path3D" type="Path3D" parent="." unique_id=159035172]
+curve = SubResource("Curve3D_7dm0k")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=2079962946]
+transform = Transform3D(0.99999934, 0, 0, 0, 1, 0, 0, 0, 0.99999934, 0, 0, -50)
+progress = 50.0
+script = ExtResource("1_ig7tw")
+
+[node name="CameraTarget" type="Node3D" parent="Path3D/PathFollow3D" unique_id=113784379]
+transform = Transform3D(0.99999905, 8.74227e-08, 1.5099565e-07, 8.742275e-08, -1, 1.3200472e-14, 1.5099565e-07, 0, -0.99999905, -5.3758583e-07, 1.1302645, 2.9399986)
+
+[node name="Area3D" type="Area3D" parent="Path3D/PathFollow3D" unique_id=262475882]
+transform = Transform3D(1.0000006, 0, 0, 0, 1, 0, 0, 0, 1.0000006, 0, 0.5208842, 4.9933167)
+collision_mask = 10
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D/Area3D" unique_id=1950689378]
+transform = Transform3D(0.99999934, 0, 0, 0, 1, 0, 0, 0, 0.99999934, -4.3449086e-07, 0.044248044, -0.02331543)
+mesh = SubResource("BoxMesh_7dm0k")
+script = ExtResource("2_0xm2m")
+bullet_scene = ExtResource("3_1bvp3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path3D/PathFollow3D/Area3D/MeshInstance3D" unique_id=1365998207]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_4c57u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/PathFollow3D/Area3D" unique_id=1045150972]
+shape = SubResource("BoxShape3D_0xm2m")
+
+[node name="Camera3D" type="Camera3D" parent="Path3D" unique_id=481161834 node_paths=PackedStringArray("camera_target")]
+transform = Transform3D(-1, -8.958249e-08, 1.2155127e-07, 0, 0.8049977, 0.59327805, -1.509958e-07, 0.59327805, -0.8049977, -0.010358609, 1.8957093, -46.77839)
+environment = SubResource("Environment_ig7tw")
+script = ExtResource("5_kek77")
+camera_target = NodePath("../PathFollow3D/CameraTarget")
+lag_speed = 5.0
+
+[node name="Node3D2" parent="." unique_id=1724812857 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="Node3D3" parent="." unique_id=1301555213 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
+
+[node name="Node3D" parent="." unique_id=714446443 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="enemy" parent="." unique_id=195879725 instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -34.759727)
+
+[node name="spawner" type="Node" parent="." unique_id=243161921 node_paths=PackedStringArray("path_follow_node")]
+script = ExtResource("7_272bh")
+enemy_scene = ExtResource("6_7mycd")
+path_follow_node = NodePath("../Path3D/PathFollow3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=880570261]
+collision_layer = 2
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_kek77")
+script = ExtResource("8_5vw27")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=456504420]
+transform = Transform3D(1, 0, 0, 0, 5.6629543, 0, 0, 0, 24.186586, 4.078407, 0.10240984, -20.540924)
+mesh = SubResource("BoxMesh_4c57u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=748846194]
+transform = Transform3D(1, 0, 0, 0, 5.6629543, 0, 0, 0, 24.186586, 4.078407, 0.10240984, -20.540924)
+shape = SubResource("BoxShape3D_kek77")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=67729581]
+collision_layer = 2
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_4c57u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=1182165426]
+transform = Transform3D(1, 0, 0, 0, 5.6629543, 0, 0, 0, 24.186586, -3.4386296, 0.10240984, -20.540924)
+mesh = SubResource("BoxMesh_4c57u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=789601754]
+transform = Transform3D(1.89, 0, 0, 0, 5.6629543, 0, 0, 0, 24.186586, -3.9215932, 0.10240984, -20.540924)
+shape = SubResource("BoxShape3D_kek77")
+
+[connection signal="body_entered" from="Path3D/PathFollow3D/Area3D" to="Path3D/PathFollow3D/Area3D/MeshInstance3D" method="_on_area_3d_body_entered"]
