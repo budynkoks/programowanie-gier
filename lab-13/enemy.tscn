@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://7gq01m2n4evq"]
+
+[ext_resource type="Script" uid="uid://br1de1gm4j6lw" path="res://enemy.gd" id="1_7k104"]
+[ext_resource type="PackedScene" uid="uid://wg0kqer2w3u6" path="res://bullet_enemy.tscn" id="2_4gyqm"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7k104"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4gyqm"]
+
+[node name="Node3D" type="Node3D" unique_id=714446443]
+script = ExtResource("1_7k104")
+bullet_scene = ExtResource("2_4gyqm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=290207543]
+mesh = SubResource("CapsuleMesh_7k104")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=474025460]
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1911460234]
+transform = Transform3D(1.395, 0, 0, 0, 1.395, 0, 0, 0, 1.395, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_4gyqm")
