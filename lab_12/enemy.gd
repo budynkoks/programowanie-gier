@@ -18,7 +18,7 @@ func _on_area_entered(area: Area3D) -> void:
 
 
 @export var sway_amplitude: float = 3.0
-@export var sway_period: float = 2.0
+@export var sway_period: float = 3.0
 
 func _ready() -> void:
 	$Area3D.area_entered.connect(_on_area_entered)
